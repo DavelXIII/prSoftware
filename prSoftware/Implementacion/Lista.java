@@ -2,12 +2,14 @@ package redSocial;
 
 import java.util.*;
 
-public class Lista {
+public class Lista extends Cosas {
 	
 	private String nombre;
 	private List<Objeto> objetos;
-	
-	Lista(String nombre, Collection<Objeto> objetos){
+	private List<Objeto> Visitantes;
+	private List<String> tags;
+
+	public Lista(String nombre, Collection<Objeto> objetos){
 		this.nombre = nombre;
 		this.objetos = new ArrayList<>(objetos);	
 	}

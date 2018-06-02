@@ -5,27 +5,48 @@ import java.util.*;
 public class Usuario {
 	private String nombreUsuario;
 	private int id;
-	private String contraseña;
+	private String contraseﾃｱa;
 	private int puntuacion;
 	private String avatar;
 	private List<Integer> amigos;
 	private int numSeguidores;
 	private boolean influencer;
+	private List<Canal> canales;
+	private List<String> TagsPropias ;
+	private List<String> TagsRecomendar ;
+
 	
-	
-	public Usuario(String nombreUsuario, String contraseña, int id) {
+	public Usuario(String nombreUsuario, String contraseﾃｱa, int id) {
+
+		this.TagsPropias = new ArrayList<String>() ;
+		this.TagsRecomendar = new ArrayList<String>() ;
 		this.nombreUsuario = nombreUsuario;
-		this.contraseña = contraseña;
+		this.contraseﾃｱa = contraseﾃｱa;
 		this.id = id;
 		this.puntuacion = 0;
 		this.avatar = "https://i.ytimg.com/vi/sPEOKxHZZvA/maxresdefault.jpg";
 		//this.amigos = new ArrayL
 		this.numSeguidores = 0;
 		this.influencer = false;
-		
-		
+		canales= new ArrayList<>();
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 	public void convertirInfluencer(int id) {
 		influencer = true;
 	}
@@ -35,6 +56,7 @@ public class Usuario {
 	}
 	
 	public Usuario recomendar(/*datos*/) {
+		//prueva.
 		return null;
 	}
 	
@@ -50,7 +72,8 @@ public class Usuario {
 		amigos.remove(id);
 	}
 	
-	public void realizarBusqueda(String tematica) {
+	public Map<String, List<Cosas>> realizarBusqueda(String tematica) {
 		
 	}
 }
+
