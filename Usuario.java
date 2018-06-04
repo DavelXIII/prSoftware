@@ -71,9 +71,34 @@ public class Usuario extends Cosas {
 		this.finalize();
 	}
 	
-	public List<Integer> recomendar(/*datos*/) {
-
-		return null;
+	public void recomendar(Map<String, Map<String, ArrayList<Cosas>>> MapReducido) {
+		Random R = new Random() ;
+		int i ;
+		String Tag1, Tag2, Tag3 ;
+		Usuario User ;
+		List<Cosas> L = new ArrayList<Cosas>() ;
+		i = R.nextInt(TagsRecomendar.size()) ;
+		Tag1 = TagsRecomendar.get(i) ;
+		i = R.nextInt(TagsRecomendar.size()) ;
+		Tag2 = TagsRecomendar.get(i) ;
+		i = R.nextInt(TagsRecomendar.size()) ;
+		Tag3 = TagsRecomendar.get(i) ;
+		
+		L = DevolverUsuarios(Tag1,MapReducido) ;
+		i = R.nextInt(L.size()) ;
+		User = (Usuario) L.get(i) ;
+		User.toString() ;
+		
+		L = DevolverUsuarios(Tag1,MapReducido) ;
+		i = R.nextInt(L.size()) ;
+		User = (Usuario) L.get(i) ;
+		User.toString() ;
+		
+		L = DevolverUsuarios(Tag1,MapReducido) ;
+		i = R.nextInt(L.size()) ;
+		User = (Usuario) L.get(i) ;
+		User.toString() ;
+		
 	}
 	
 	public void agregarAmigo(int id) {
@@ -84,8 +109,43 @@ public class Usuario extends Cosas {
 		amigos.remove(id);
 	}
 	
-	public Map<String, List<Cosas>> realizarBusqueda(String tematica) {
-		return null;
+	public void realizarBusqueda(String Palabra, Map<String, Map<String, ArrayList<Cosas>>> MapReducido) {
+		Cosas Cosa ;
+		MapReducido.get(Palabra)  ;
+	}
+	
+	private List<Cosas> DevolverUsuarios(String Tag, Map<String, Map<String ,ArrayList<Cosas>>> MapReducido){
 		
+		List<Cosas> U = new ArrayList<Cosas>() ;
+		ListIterator<Cosas> UIT = U.listIterator() ;
+		List<Cosas> C = new ArrayList<Cosas>() ;
+		ListIterator<Cosas> CIT = U.listIterator() ;
+		List<Cosas> L = new ArrayList<Cosas>() ;
+		ListIterator<Cosas> LIT = U.listIterator() ;
+		List<Cosas> O = new ArrayList<Cosas>() ;
+		ListIterator<Cosas> OIT = U.listIterator() ;
+		Map<String, ArrayList<Cosas>> M ;
+		M = MapReducido.get(Tag) ;
+		U = M.get("Usuarios") ;
+		while(UIT.hasNext() || CIT.hasNext() || LIT.hasNext() || OIT.hasNext()){
+			if(UIT.hasNext()) {
+				((Usuario) UIT.next()).toString() ;
+			}
+			
+			if(CIT.hasNext()) {
+				((Canal) UIT.next()).toString() ;
+			}
+			
+			if(LIT.hasNext()) {
+				((Lista) UIT.next()).toString() ;
+			}
+			
+			if(OIT.hasNext()) {
+				((Objeto) UIT.next()).toString() ;
+			}
+			
+		}
+		
+		return L ;
 	}
 }
