@@ -1,0 +1,44 @@
+package redSocial;
+
+import java.util.*;
+
+public class Objeto extends Cosas  {
+	private String nombre;
+	private int id;
+	private List<Canal> Canales;
+	private List<String> Tags ;
+	
+	public Objeto(String nombre, int id) {
+		this.Tags = new ArrayList<String>() ;
+		this.nombre = nombre;
+		this.id = id;
+		Tags = new ArrayList<String>() ;
+	}
+	
+	public List<String> getTags() {
+		return Tags;
+	}
+
+	public void añadirTag(String tags) {
+		Tags.add(tags) ;
+	}
+	
+	public void añadirListaTag(List<String> tags) {
+		Tags.addAll(tags) ;
+	}
+
+	public void borrarObjeto() throws Throwable {
+		this.finalize();
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		boolean res = obj instanceof Objeto;
+		Objeto objeto = res ? (Objeto)obj : null;
+		return res && objeto.nombre.equalsIgnoreCase(this.nombre);
+	}
+	
+	public int hashCode(){
+		return this.nombre.toLowerCase().hashCode();
+	}
+}
