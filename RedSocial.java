@@ -9,13 +9,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class RedSocial {
-	private CargaDatos Datos ;
+
 	private Map<String, ArrayList<Cosas>> Map ;
 	private Map<String, Map<String, ArrayList<Cosas>>> MapRed ;
 	
-	public RedSocial() {
-		Datos = new CargaDatos() ;
-		Map = new HashMap<String, ArrayList<Cosas>>() ;
+	public RedSocial(Map<String, ArrayList<Cosas>> map) {
+
+		Map = map ;
 		MapRed = Reducir() ;
 	}
 
@@ -24,7 +24,7 @@ public class RedSocial {
 	}
 
 	public void setMap(Map<String, ArrayList<Cosas>> map) {
-		this.Map = map;
+		Map = map;
 	}
 
 	public Map<String, Map<String, ArrayList<Cosas>>> getMapRed() {
