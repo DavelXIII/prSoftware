@@ -145,7 +145,24 @@ public class Usuario extends Cosas {
 			}
 			
 		}
-		
 		return L ;
+	}
+	
+	@Override
+	
+	public String toString() {
+		String res = null;
+		StringBuilder str = new StringBuilder();
+		ListIterator<Canal> iter = canales.listIterator();
+		while(iter.hasNext()) {
+			str.append(iter.next().toString());
+			str.append(", ");
+		}
+		if(influencer) {
+			res = nombreUsuario + " " + id + "\nInfluencer" + str;	
+		} else {
+			res = nombreUsuario + " " + id + "\n" + puntuacion + str;
+		}
+		return null;
 	}
 }
