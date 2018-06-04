@@ -23,8 +23,8 @@ public class RedSocial {
 		return Map;
 	}
 
-	public void setMap(Map<String, List<Cosas>> map) {
-		Map = Map;
+	public void setMap(Map<String, ArrayList<Cosas>> map) {
+		this.Map = map;
 	}
 
 	public Map<String, Map<String, ArrayList<Cosas>>> getMapRed() {
