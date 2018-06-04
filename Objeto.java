@@ -32,6 +32,7 @@ public class Objeto extends Cosas  {
 	}
 	
 	@Override
+	
 	public boolean equals(Object obj){
 		boolean res = obj instanceof Objeto;
 		Objeto objeto = res ? (Objeto)obj : null;
@@ -40,5 +41,15 @@ public class Objeto extends Cosas  {
 	
 	public int hashCode(){
 		return this.nombre.toLowerCase().hashCode();
+	}
+	
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		ListIterator<String> iter = Tags.listIterator();
+		while(iter.hasNext()) {
+			str.append(iter.next().toString());
+			str.append(" ");
+		}
+		return nombre + " " + str;		
 	}
 }

@@ -9,7 +9,7 @@ public class Lista extends Cosas {
 	private List<Objeto> Visitantes;
 	private List<String> Tags;
 
-	public Lista(String nombre, Collection<Objeto> objetos){
+	public Lista(String nombre, Collection<Objeto> objetos) {
 		this.Tags = new ArrayList<>() ;
 		this.nombre = nombre;
 		this.objetos = new ArrayList<>(objetos);	
@@ -55,4 +55,25 @@ public class Lista extends Cosas {
 		this.Tags.add(tags) ;
 	}
 
+	
+	@Override
+	
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		ListIterator<Objeto> iter = objetos.listIterator();
+		
+		str.append("Elementos: ");
+		while(iter.hasNext()) {
+			str.append(iter.next().toString());
+			str.append(" ");
+		}
+		str.append("\n");
+		ListIterator<String> iter1 = Tags.listIterator();
+		while(iter1.hasNext()) {
+			str.append(iter1.next().toString());
+			str.append(" ");
+		}
+		
+		return nombre + " " + str;		
+	}
 }
