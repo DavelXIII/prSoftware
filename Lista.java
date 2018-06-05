@@ -13,6 +13,7 @@ public class Lista implements Cosas {
 		this.nombre = nombre;
 		this.objetos = new ArrayList<>(objetos);	
 		this.Tags = new ArrayList<>() ;
+		this.añadirTags(nombre);
 	}
 	
 	public void borrarLista() throws Throwable {

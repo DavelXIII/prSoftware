@@ -21,7 +21,6 @@ public class Usuario implements Cosas {
 
 	
 	public Usuario(String nombreUsuario, String contraseña, int id) {
-
 		this.TagsPropias = new ArrayList<String>() ;
 		this.TagsRecomendar = new ArrayList<String>() ;
 		this.canales = new ArrayList<Canal>() ;
@@ -33,6 +32,7 @@ public class Usuario implements Cosas {
 		//this.amigos = new ArrayL
 		this.numSeguidores = 0;
 		this.influencer = false;
+		this.AñadirTagsRecomendar(nombreUsuario);
 	}
 	
 	public List<String> getTagsPropias() {
@@ -51,8 +51,11 @@ public class Usuario implements Cosas {
 		return TagsRecomendar;
 	}
 	
-	public void setTagsRecomendar(List<String> tagsRecomendar) {
-		TagsRecomendar = tagsRecomendar;
+	public void AñadirListaTagsRecomendar(List<String> tagsRecomendar) {
+		TagsRecomendar.addAll(tagsRecomendar) ;
+	}
+	public void AñadirTagsRecomendar(String tags) {
+		TagsRecomendar.add(tags) ;
 	}
 	
 	public int getId() {

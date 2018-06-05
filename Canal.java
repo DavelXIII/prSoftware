@@ -15,6 +15,7 @@ public class Canal implements Cosas{
 		this.nombre = nombre;
 		this.tematica = tematica;
 		this.descripcion = descripcion;
+		this.añadirTags(nombre);
 	}
 	
 	public List<String> getTags() {

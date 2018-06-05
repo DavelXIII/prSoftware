@@ -13,6 +13,7 @@ public class Objeto implements Cosas  {
 		this.nombre = nombre;
 		this.id = id;
 		Tags = new ArrayList<String>() ;
+		this.añadirTag(nombre);
 	}
 	
 	public List<String> getTags() {

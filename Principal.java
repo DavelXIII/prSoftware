@@ -21,12 +21,6 @@ public class Principal {
 			}
 		};
 		
-		usuarios.add(new Usuario("Juan", "I like trains", 0, "España"));
-		usuarios.add(new Usuario("Pepe", "Pass", 1, "Inglaterra"));
-		usuarios.add(new Usuario("Danielo", "Arroz con leche", 2, "Francia"));
-		usuarios.add(new Usuario("Agustin", "Palindromo", 3, "Italia"));
-		usuarios.add(new Usuario("Mario", "O Joseas o te Josean asin de claro", 4, "Islandia"));
-		
 		List<Canal> canales = new ArrayList<>();
 		canales.add(new Canal("Cine clasico", "Cine", "Descripcion"));
 		canales.add(new Canal("Comida rusa", "Cocina", "Descripcion"));
@@ -35,12 +29,21 @@ public class Principal {
 		boolean rtr = false ;
 		Usuario User = new Usuario("User", "User", 1);
 		Map<String, ArrayList<Cosas>> Map = null ;
+		ArrayList<Cosas> CosaApo ;
 		RedSocial List = new RedSocial(Map);
 		while(true) {
 			switch(e =System.in.toString()) {
 				case "canal" :
 					System.out.println("Introduzca el canal a visitar");
-					b = System.out.toString() ;
+					b = System.in.toString() ;
+					CosaApo = Map.get("Canales") ;
+					for(int i = 0 ; i<CosaApo.size() ; i++) {
+						if(((Canal) CosaApo.get(i)).getNombre().equals(b)) {
+							((Canal) CosaApo.get(i)).toString() ;
+							User.AñadirListaTagsRecomendar(((Canal) CosaApo.get(i)).getTags());
+							break ;
+						}
+					}
 					break ;
 				case "finalizar" :
 					rtr = true ;
@@ -49,7 +52,7 @@ public class Principal {
 					User.recomendar(List.getMapRed());
 				case "Buscar" :
 					System.out.println("Introduzca la palabra que desea buscar");
-					b = System.out.toString() ;
+					b = System.in.toString() ;
 					User.realizarBusqueda(b, List.getMapRed());
 			}
 			if(rtr) {
@@ -60,4 +63,3 @@ public class Principal {
 	}
 		
 	}
-}
