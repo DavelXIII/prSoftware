@@ -10,9 +10,9 @@ public class Lista extends Cosas {
 	private List<String> Tags;
 
 	public Lista(String nombre, Collection<Objeto> objetos) {
-		this.Tags = new ArrayList<>() ;
 		this.nombre = nombre;
 		this.objetos = new ArrayList<>(objetos);	
+		this.Tags = new ArrayList<>() ;
 	}
 	
 	public void borrarLista() throws Throwable {

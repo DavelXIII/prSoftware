@@ -2,11 +2,17 @@ package redSocial;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
 public class CargaDatos {
+	
+	private Map<String,List<Cosas>> data = new HashMap<>();
 	
 	private void loadFile(String filename) {
 		try(Scanner sc = new Scanner(new File(filename))) {
@@ -17,8 +23,10 @@ public class CargaDatos {
 	}
 	
 	private void readFile(Scanner sc){
-		Set<String> values = new HashSet<>();
+		List<Cosas> values = new ArrayList<>();
 		String domainName = null;
+		int order = 1;
+		int id = 1;
 		int counter = 0;
 		while(sc.hasNextLine()){
 			String newline = sc.nextLine();
@@ -27,37 +35,64 @@ public class CargaDatos {
 			   }
 			try(Scanner scn = new Scanner(newline)){
 				scn.useDelimiter("[ ,.;:]+");
-				switch(scn.next().toLowerCase()) {
-				case "domain":
-					domainName = scn.next();
-					break;
-				case "values":
+				if(order == 1) {
+					String name;
+					String pass;
 					while(scn.hasNext()) {
-						values.add(scn.next());
+						name = scn.next();
+						if(name.equals("+")) {
+							data.put("Usuarios", values);
+							order = 2;
+						} else {
+							pass = scn.next();
+							values.add(new Usuario(name, pass, id));
+							id++;
+						}
 					}
-					break;
-				case "adjacent":
+				
+				} else if(order == 2) {
+					values = new ArrayList<>();
+					String nombre;
+					String tematica;
+					StringBuilder descripcion = null;
 					while(scn.hasNext()) {
-						adjacents.add(new Tuple(domainName, scn.next()));
+						nombre = scn.next();
+						if(nombre.equals("+")) {
+							data.put("Canales", values);
+							order = 3;
+						} else {
+							tematica = scn.next();
+							while(scn.hasNext()) {
+								descripcion.append(scn.next()).append(" ");
+							}
+							values.add(new Canal(nombre, tematica, descripcion.toString()));
+						}
 					}
-					break;
-				case "constraint":
-					this.constraint = scn.next();
+				} else if(order == 3) {
+					String nombre;
+					List<Cosas> listas = new ArrayList<>();
+					List<Objeto> objLista = new ArrayList<>();
+					Set<Objeto> objs = new HashSet<>();
 					while(scn.hasNext()) {
-						constraints.add(new Tuple(domainName, scn.next()));
+						nombre = scn.next();
+						if(nombre.equals("+")) {
+							data.put("Listas", listas);
+							List<Cosas> objsList = new ArrayList<>();
+							objsList.addAll(objs);
+							data.put("Objetos", (List<Cosas>) objsList);
+						} else {
+							Objeto obj;
+							nombre = scn.next();
+							while(scn.hasNext()) {
+								obj = new Objeto(scn.next(), id);
+								objLista.add(obj);
+								objs.add(obj);
+								id++;
+							}
+							listas.add(new Lista(nombre, objLista));
+						}
 					}
-					break;
-				}
-				counter++;
-
-				if(counter == 4) {
-					domains.put(domainName, new HashSet<String>());
-					Set<String> aux1 = domains.get(domainName);
-					aux1.addAll(values);
-					
-					counter = 0;
-					//System.out.println("Domain: " + domainName + "\nValues:" +  values.toString() + "\nAdjacents: " + adjacents + "\nConstraint: " + this.constraint + "\nScope: " + constraints.toString() + "\n");
-				}
+				}			
 			}
 		}
 	}
