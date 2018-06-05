@@ -4,7 +4,7 @@ import java.util.*;
 
 
 
-public class Usuario extends Cosas {
+public class Usuario implements Cosas {
 	private String nombreUsuario;
 	private int id;
 	private String contraseña;

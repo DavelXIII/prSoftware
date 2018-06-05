@@ -1,5 +1,5 @@
 package redSocial;
 
-public class Cosas {
+public interface Cosas {
 
 }

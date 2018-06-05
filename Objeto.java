@@ -2,7 +2,7 @@ package redSocial;
 
 import java.util.*;
 
-public class Objeto extends Cosas  {
+public class Objeto implements Cosas  {
 	private String nombre;
 	private int id;
 	private List<Canal> Canales;

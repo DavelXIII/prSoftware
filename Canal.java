@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class Canal extends Cosas{
+public class Canal implements Cosas{
 	private String nombre;
 	private String tematica;
 	private String descripcion;
