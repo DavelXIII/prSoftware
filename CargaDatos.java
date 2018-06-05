@@ -12,6 +12,10 @@ import java.util.Set;
 
 public class CargaDatos {
 	
+	public Map<String, List<Cosas>> getMap() {
+		return data;
+	}
+	
 	private Map<String,List<Cosas>> data = new HashMap<>();
 	
 	private void loadFile(String filename) {
