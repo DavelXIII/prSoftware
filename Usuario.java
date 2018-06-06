@@ -2,6 +2,8 @@ package redSocial;
 
 import java.util.*;
 
+
+
 public class Usuario implements Cosas {
 	private String nombreUsuario;
 	private int id;
@@ -33,7 +35,9 @@ public class Usuario implements Cosas {
 		this.AñadirTagsRecomendar(nombreUsuario);
 	}
 	
-	
+	public List<String> getTagsPropias() {
+		return TagsPropias;
+	}
 	
 	public void AñadirTagsPropias(String tagsPropias) {
 		TagsPropias.add(tagsPropias) ;
@@ -43,16 +47,8 @@ public class Usuario implements Cosas {
 		TagsPropias.addAll(TagsPropias) ;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public void agregarAmigo(int id) {
-		amigos.add(id);
-	}
-
-	public void convertirInfluencer(int id) {
-		influencer = true;
+	public List<String> getTagsRecomendar() {
+		return TagsRecomendar;
 	}
 	
 	public void AñadirListaTagsRecomendar(List<String> tagsRecomendar) {
@@ -62,24 +58,20 @@ public class Usuario implements Cosas {
 		TagsRecomendar.add(tags) ;
 	}
 	
-	public List<String> getTagsRecomendar() {
-		return TagsRecomendar;
-	}
-	
 	public int getId() {
 		return id;
 	}
-	
-	public List<String> getTagsPropias() {
-		return TagsPropias;
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void convertirInfluencer(int id) {
+		influencer = true;
 	}
 	
 	public void borrarUsuario() throws Throwable {
 		this.finalize();
-	}
-	
-	public void eliminarAmigo(int id) {
-		amigos.remove(id);
 	}
 	
 	public void recomendar(Map<String, Map<String, ArrayList<Cosas>>> MapReducido) {
@@ -112,39 +104,63 @@ public class Usuario implements Cosas {
 		
 	}
 	
-	public void realizarBusqueda(String Palabra, Map<String, Map<String, ArrayList<Cosas>>> MapReducido) {
-		Cosas Cosa ;
-		MapReducido.get(Palabra)  ;
+	public void agregarAmigo(int id) {
+		amigos.add(id);
 	}
 	
-	private List<Cosas> DevolverUsuarios(String Tag, Map<String, Map<String ,ArrayList<Cosas>>> MapReducido){
+	public void eliminarAmigo(int id) {
+		amigos.remove(id);
+	}
+	
+	public List<Cosas> DevolverUsuarios(String Palabra, Map<String, Map<String, ArrayList<Cosas>>> MapReducido) {
 		
-		List<Cosas> U = new ArrayList<Cosas>() ;
-		ListIterator<Cosas> UIT = U.listIterator() ;
-		List<Cosas> C = new ArrayList<Cosas>() ;
-		ListIterator<Cosas> CIT = U.listIterator() ;
-		List<Cosas> L = new ArrayList<Cosas>() ;
-		ListIterator<Cosas> LIT = U.listIterator() ;
-		List<Cosas> O = new ArrayList<Cosas>() ;
-		ListIterator<Cosas> OIT = U.listIterator() ;
+		Map<String, ArrayList<Cosas>> M ;
+		List<Cosas> Usuarios = new ArrayList<Cosas>() ;
+		M = MapReducido.get(Palabra)  ;
+		Usuarios = M.get("Usuarios") ;
+		return Usuarios ;
+		
+	}
+	
+	private void realizarBusqueda(String Tag, Map<String, Map<String ,ArrayList<Cosas>>> MapReducido){
 		Map<String, ArrayList<Cosas>> M ;
 		M = MapReducido.get(Tag) ;
+		
+		List<Cosas> U = new ArrayList<Cosas>() ;
 		U = M.get("Usuarios") ;
+		ListIterator<Cosas> UIT = U.listIterator() ;
+		
+		List<Cosas> C = new ArrayList<Cosas>() ;
+		C = M.get("Canales") ;
+		ListIterator<Cosas> CIT = C.listIterator() ;
+		
+		List<Cosas> L = new ArrayList<Cosas>() ;
+		L = M.get("Listas") ;
+		ListIterator<Cosas> LIT = L.listIterator() ;
+		
+		List<Cosas> O = new ArrayList<Cosas>() ;
+		O = M.get("Objetos") ;
+		ListIterator<Cosas> OIT = O.listIterator() ;
+		
 		while(UIT.hasNext() || CIT.hasNext() || LIT.hasNext() || OIT.hasNext()){
 			if(UIT.hasNext()) {
 				((Usuario) UIT.next()).toString() ;
 			}
+			
 			if(CIT.hasNext()) {
 				((Canal) UIT.next()).toString() ;
 			}
+			
 			if(LIT.hasNext()) {
 				((Lista) UIT.next()).toString() ;
 			}
+			
 			if(OIT.hasNext()) {
 				((Objeto) UIT.next()).toString() ;
 			}
+			
 		}
-		return L ;
+
 	}
 	
 	@Override
