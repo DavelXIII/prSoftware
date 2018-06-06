@@ -2,8 +2,6 @@ package redSocial;
 
 import java.util.*;
 
-
-
 public class Usuario implements Cosas {
 	private String nombreUsuario;
 	private int id;
@@ -35,9 +33,7 @@ public class Usuario implements Cosas {
 		this.AñadirTagsRecomendar(nombreUsuario);
 	}
 	
-	public List<String> getTagsPropias() {
-		return TagsPropias;
-	}
+	
 	
 	public void AñadirTagsPropias(String tagsPropias) {
 		TagsPropias.add(tagsPropias) ;
@@ -47,8 +43,16 @@ public class Usuario implements Cosas {
 		TagsPropias.addAll(TagsPropias) ;
 	}
 	
-	public List<String> getTagsRecomendar() {
-		return TagsRecomendar;
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public void agregarAmigo(int id) {
+		amigos.add(id);
+	}
+
+	public void convertirInfluencer(int id) {
+		influencer = true;
 	}
 	
 	public void AñadirListaTagsRecomendar(List<String> tagsRecomendar) {
@@ -58,20 +62,24 @@ public class Usuario implements Cosas {
 		TagsRecomendar.add(tags) ;
 	}
 	
+	public List<String> getTagsRecomendar() {
+		return TagsRecomendar;
+	}
+	
 	public int getId() {
 		return id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void convertirInfluencer(int id) {
-		influencer = true;
+	
+	public List<String> getTagsPropias() {
+		return TagsPropias;
 	}
 	
 	public void borrarUsuario() throws Throwable {
 		this.finalize();
+	}
+	
+	public void eliminarAmigo(int id) {
+		amigos.remove(id);
 	}
 	
 	public void recomendar(Map<String, Map<String, ArrayList<Cosas>>> MapReducido) {
@@ -104,14 +112,6 @@ public class Usuario implements Cosas {
 		
 	}
 	
-	public void agregarAmigo(int id) {
-		amigos.add(id);
-	}
-	
-	public void eliminarAmigo(int id) {
-		amigos.remove(id);
-	}
-	
 	public void realizarBusqueda(String Palabra, Map<String, Map<String, ArrayList<Cosas>>> MapReducido) {
 		Cosas Cosa ;
 		MapReducido.get(Palabra)  ;
@@ -134,19 +134,15 @@ public class Usuario implements Cosas {
 			if(UIT.hasNext()) {
 				((Usuario) UIT.next()).toString() ;
 			}
-			
 			if(CIT.hasNext()) {
 				((Canal) UIT.next()).toString() ;
 			}
-			
 			if(LIT.hasNext()) {
 				((Lista) UIT.next()).toString() ;
 			}
-			
 			if(OIT.hasNext()) {
 				((Objeto) UIT.next()).toString() ;
 			}
-			
 		}
 		return L ;
 	}

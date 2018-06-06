@@ -18,10 +18,6 @@ public class Canal implements Cosas{
 		this.añadirTags(nombre);
 	}
 	
-	public List<String> getTags() {
-		return Tags;
-	}
-	
 	public void añadirListaTags(List<String> tags) {
 		Tags.addAll(tags) ;
 	}
@@ -30,12 +26,20 @@ public class Canal implements Cosas{
 		Tags.add(tags) ;
 	}
 	
-	public void editarCanal(int id) {
-		
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	public List<String> getTags() {
+		return Tags;
 	}
 
 	public String getNombre() {
 		return nombre;
+	}
+	
+	public void setTematica(String tematica) {
+		this.tematica = tematica;
 	}
 
 	public void setNombre(String nombre) {
@@ -46,16 +50,8 @@ public class Canal implements Cosas{
 		return tematica;
 	}
 
-	public void setTematica(String tematica) {
-		this.tematica = tematica;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 	
 	@Override

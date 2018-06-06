@@ -10,8 +10,4 @@ public class Publicacion {
 	public void borrarPublicacion() throws Throwable {
 		this.finalize();
 	}
-	
-	public void editarPublicacion() {
-		
-	}
 }

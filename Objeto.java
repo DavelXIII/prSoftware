@@ -15,10 +15,6 @@ public class Objeto implements Cosas  {
 		Tags = new ArrayList<String>() ;
 		this.añadirTag(nombre);
 	}
-	
-	public List<String> getTags() {
-		return Tags;
-	}
 
 	public void añadirTag(String tags) {
 		Tags.add(tags) ;
@@ -26,6 +22,10 @@ public class Objeto implements Cosas  {
 	
 	public void añadirListaTag(List<String> tags) {
 		Tags.addAll(tags) ;
+	}
+	
+	public List<String> getTags() {
+		return Tags;
 	}
 
 	public void borrarObjeto() throws Throwable {

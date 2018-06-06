@@ -20,7 +20,6 @@ public class Lista implements Cosas {
 		this.finalize();
 	}
 	
-	
 	public void añadirObjeto(Objeto obj) {
 		objetos.add(obj);
 	}
@@ -30,10 +29,24 @@ public class Lista implements Cosas {
 		objetos.add(objeto);
 	}
 	
+	public void añadirListaTags(List<String> tags) {
+		this.Tags.addAll(tags) ;
+	}
+	
+	public void añadirTags(String tags) {
+		this.Tags.add(tags) ;
+	}
+	
 	public boolean equals(Collection<Objeto> lista){
 		boolean res = objetos.size() == lista.size() && lista.containsAll(objetos) && objetos.addAll(lista);
 		return res;
 	}
+
+	public List<String> getTags() {
+		return Tags;
+	}
+	
+	@Override
 	
 	public int hashCode(){
 		int sum = 0;
@@ -43,21 +56,6 @@ public class Lista implements Cosas {
 		}
 		return sum;
 	}
-
-	public List<String> getTags() {
-		return Tags;
-	}
-
-	public void añadirListaTags(List<String> tags) {
-		this.Tags.addAll(tags) ;
-	}
-	
-	public void añadirTags(String tags) {
-		this.Tags.add(tags) ;
-	}
-
-	
-	@Override
 	
 	public String toString() {
 		StringBuilder str = new StringBuilder();

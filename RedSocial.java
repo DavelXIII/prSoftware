@@ -9,35 +9,53 @@ import java.util.Map;
 import java.util.Set;
 
 public class RedSocial {
-
-	private Map<String, ArrayList<Cosas>> Map ;
-	private Map<String, Map<String, ArrayList<Cosas>>> MapRed ;
 	
-	public RedSocial(Map<String, ArrayList<Cosas>> map) {
+	private static RedSocial instanciaÚnica;
 
+	private RedSocial() {
+		CargaDatos Datos = new CargaDatos() ;
+		Map = new HashMap<String, ArrayList<Cosas>>() ;
+		MapRed = Reducir() ;
+	}
+	
+	private static Map<String, ArrayList<Cosas>> Map ;
+	private static Map<String, Map<String, ArrayList<Cosas>>> MapRed ;
+	
+	public static RedSocial Instancia() {
+		if(instanciaÚnica== null)
+		instanciaÚnica= new RedSocial();
+		return instanciaÚnica;
+		}
+	
+	private RedSocial(Map<String, ArrayList<Cosas>> map) {
 		Map = map ;
 		MapRed = Reducir() ;
 	}
-
-	public Map<String, ArrayList<Cosas>> getMap() {
-		return Map;
+	
+	public static RedSocial Instancia(Map<String, ArrayList<Cosas>> map) {
+		if(instanciaÚnica== null)
+		instanciaÚnica= new RedSocial(map);
+		return instanciaÚnica;
 	}
 
 	public void setMap(Map<String, ArrayList<Cosas>> map) {
 		Map = map;
+	}
+	
+	public Map<String, ArrayList<Cosas>> getMap() {
+		return Map;
 	}
 
 	public Map<String, Map<String, ArrayList<Cosas>>> getMapRed() {
 		return MapRed;
 	}
 	
-	private Map<String, Map<String, ArrayList<Cosas>>> Reducir(){
+	private static Map<String, Map<String, ArrayList<Cosas>>> Reducir(){
 		List<String> Ttags = allTags() ;
 		Map<String, Map<String, ArrayList<Cosas>>> MapReducido = new HashMap<String,Map<String, ArrayList<Cosas>>>() ;
 		Map<String, ArrayList<Cosas>> MapApo ;
 		List<Cosas> Resultados ;
 		List<Cosas> Apollo2 = new ArrayList<Cosas>() ;
-;
 		
 		for(int i = 0 ; i < Ttags.size() ; i++) {
 			MapApo = new HashMap<String, ArrayList<Cosas>>() ;
@@ -83,7 +101,7 @@ public class RedSocial {
 		return MapReducido ;
 	}
 	
-	private List<String> allTags(){
+	private static List<String> allTags(){
 		List<String> Apollo = new ArrayList<String>() ;
 		List<Cosas> Apollo2 = new ArrayList<Cosas>() ;
 		Cosas Cosa ;
