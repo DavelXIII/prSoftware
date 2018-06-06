@@ -74,11 +74,14 @@ public class Usuario implements Cosas {
 		this.finalize();
 	}
 	
-	public void recomendar(Map<String, Map<String, ArrayList<Cosas>>> MapReducido) {
+	public Set<Cosas> recomendar(Map<String, Map<String, ArrayList<Cosas>>> MapReducido) {
 		Random R = new Random() ;
 		int i ;
 		String Tag1, Tag2, Tag3 ;
 		Usuario User ;
+		
+		Set<Cosas> Usuarios = new HashSet<Cosas>() ;
+		
 		List<Cosas> L = new ArrayList<Cosas>() ;
 		i = R.nextInt(TagsRecomendar.size()) ;
 		Tag1 = TagsRecomendar.get(i) ;
@@ -91,17 +94,21 @@ public class Usuario implements Cosas {
 		i = R.nextInt(L.size()) ;
 		User = (Usuario) L.get(i) ;
 		User.toString() ;
+		Usuarios.add(User) ;
 		
-		L = DevolverUsuarios(Tag1,MapReducido) ;
+		L = DevolverUsuarios(Tag2,MapReducido) ;
 		i = R.nextInt(L.size()) ;
 		User = (Usuario) L.get(i) ;
 		User.toString() ;
+		Usuarios.add(User) ;
 		
-		L = DevolverUsuarios(Tag1,MapReducido) ;
+		L = DevolverUsuarios(Tag3,MapReducido) ;
 		i = R.nextInt(L.size()) ;
 		User = (Usuario) L.get(i) ;
 		User.toString() ;
+		Usuarios.add(User) ;
 		
+		return Usuarios ;
 	}
 	
 	public void agregarAmigo(int id) {
