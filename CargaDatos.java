@@ -85,6 +85,7 @@ public class CargaDatos {
 							objsList.addAll(objs);
 							data.put("Objetos", (List<Cosas>) objsList);
 						} else {
+							objLista = new ArrayList<>();
 							Objeto obj;
 							nombre = scn.next();
 							while(scn.hasNext()) {
