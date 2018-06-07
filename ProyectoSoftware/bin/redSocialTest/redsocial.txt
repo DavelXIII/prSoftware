@@ -1,0 +1,9 @@
+user1 123
+user2 123
+user3 234
++
+literatura1 literatura Esto es genial
+juegos2 videojuegos Todo aqui
++
+lista1 obj1 obj2 obj3 obj4
+lista2 obj5 obj6 obj7 obj8
